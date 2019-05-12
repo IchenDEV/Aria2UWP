@@ -57,7 +57,7 @@ namespace Aria2UWP
         private void WebView_UnsupportedUriSchemeIdentified(WebView sender, WebViewUnsupportedUriSchemeIdentifiedEventArgs args)
         {
             args.Handled = true;
-            sender.Navigate(new Uri("ms-appdata:///local/webui/index.html#!/new"));
+            sender.Navigate(new Uri("ms-appdata:///local/webui/index.html"+args.Uri.Fragment));
         }
     }
 }
