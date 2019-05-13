@@ -4,7 +4,7 @@
 
 #### Desktop
 
-![AriaNg](https://raw.githubusercontent.com/IchenDEV/Aria2UWP/master/screenshots/desktop.png)
+![AriaNg](https://raw.githubusercontent.com/IchenDEV/Aria2UWP/master/screenshots/desktop.PNG)
 
 ## Installation
 
