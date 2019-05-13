@@ -17,7 +17,9 @@ namespace Aria2UWP
         public MainPage()
         {
             this.InitializeComponent();
+            Window.Current.SetTitleBar(Title);
         }
+
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
@@ -35,8 +37,9 @@ namespace Aria2UWP
         private async void Wb_NavigationCompleted(WebView sender, WebViewNavigationCompletedEventArgs args)
         {
             string js = "window.location = \"#!/settings/rpc/set?protocol=http&host=127.0.0.1&port=6800&interface=jsonrpc&secret=ar\"";
-           await sender.InvokeScriptAsync("eval", new string[] { js });
+            await sender.InvokeScriptAsync("eval", new string[] { js });
             sender.NavigationCompleted -= Wb_NavigationCompleted;
+            PR.IsActive = false;
         }
 
         private static async System.Threading.Tasks.Task UnZip(Uri uri, bool overwrite = true)
@@ -57,7 +60,16 @@ namespace Aria2UWP
         private void WebView_UnsupportedUriSchemeIdentified(WebView sender, WebViewUnsupportedUriSchemeIdentifiedEventArgs args)
         {
             args.Handled = true;
-            sender.Navigate(new Uri("ms-appdata:///local/webui/index.html"+args.Uri.Fragment));
+            sender.Navigate(new Uri("ms-appdata:///local/webui/index.html" + args.Uri.Fragment));
         }
+
+        private async void AppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            await ApplicationData.Current.LocalFolder.CreateFileAsync("aria2.session",CreationCollisionOption.ReplaceExisting);
+            wb.NavigationCompleted += Wb_NavigationCompleted;
+            wb.Navigate(new Uri("ms-appdata:///local/webui/index.html"));
+        }
+
+      
     }
 }
