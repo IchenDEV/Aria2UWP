@@ -10,7 +10,7 @@
   <Identity
     Name="15275ichen.Aria2forUWP"
     Publisher="CN=F67D8B2C-93A6-482B-9BE2-00CD61030093"
-    Version="1.0.0.0" />
+    Version="1.0.1.0" />
 
   <Properties>
     <DisplayName>Aria2 for UWP</DisplayName>
@@ -54,5 +54,7 @@
   <Capabilities>
     <Capability Name="internetClient" />
     <rescap:Capability Name="runFullTrust" />
+    <Capability Name="internetClientServer"/>
+    <Capability Name="privateNetworkClientServer"/>
   </Capabilities>
 </Package>

@@ -164,5 +164,10 @@
   <ItemGroup>
     <ProjectReference Include="..\Aria2UWP\Aria2UWP.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Win32\favicon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.targets" />
 </Project>

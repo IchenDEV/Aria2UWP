@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO.Compression;
 using Windows.ApplicationModel;
+using Windows.ApplicationModel.Core;
 using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -17,10 +18,18 @@ namespace Aria2UWP
         public MainPage()
         {
             this.InitializeComponent();
+
             Window.Current.SetTitleBar(Title);
+            CoreApplication.Suspending += CoreApplication_Suspending;
         }
 
-
+        private async void CoreApplication_Suspending(object sender, SuspendingEventArgs e)
+        {
+            var def = e.SuspendingOperation.GetDeferral();
+            string js = "window.location = \"#!/settings/rpc/set?protocol=http&host=127.0.0.1&port=6800&interface=jsonrpc&secret=ar\"";
+            await wb.InvokeScriptAsync("eval", new string[] { js });
+            def.Complete();
+        }
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
             await UnZip(new Uri("ms-appx:///webui.zip"));
@@ -65,11 +74,14 @@ namespace Aria2UWP
 
         private async void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
-            await ApplicationData.Current.LocalFolder.CreateFileAsync("aria2.session",CreationCollisionOption.ReplaceExisting);
+            await ApplicationData.Current.LocalFolder.CreateFileAsync("aria2.session", CreationCollisionOption.ReplaceExisting);
             wb.NavigationCompleted += Wb_NavigationCompleted;
             wb.Navigate(new Uri("ms-appdata:///local/webui/index.html"));
         }
 
-      
+        private void Page_Unloaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
