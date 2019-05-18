@@ -2,6 +2,9 @@
 using System.Windows;
 using System.Windows.Forms;
 using Windows.Storage;
+using System.Threading;
+using System.Threading.Tasks;
+using Windows.System.Threading;
 
 namespace Launcher
 {
@@ -19,10 +22,19 @@ namespace Launcher
             if(System.Diagnostics.Process.GetProcessesByName(strProcessName).Length > 1)
             {
                 System.Windows.Application.Current.Shutdown(0);
+                return;
             }
             foreach (var item in System.Diagnostics.Process.GetProcessesByName("aria2c"))
             {
-                item.Kill();
+                try
+                {
+                    item.Close();
+                    item.CloseMainWindow();
+                    item.Kill();
+                }
+                catch (Exception)
+                {
+                }         
             }
             try
             {
@@ -57,15 +69,41 @@ namespace Launcher
                 Text = "Aria2UWP"
             };
             trayIcon.Visible = true;
+            trayIcon.Click += TrayIcon_Click;
 
             ContextMenu menu = new System.Windows.Forms.ContextMenu();
 
             MenuItem closeItem = new MenuItem();
-            closeItem.Text = "Close";
-            closeItem.Click += new EventHandler(delegate { RemoveTrayIcon();Proc.Close(); this.Close(); });
+            closeItem.Text = "关闭";
+            closeItem.Click += new EventHandler(delegate {
+                try
+                {
+                    RemoveTrayIcon(); Proc.Close();  this.Close();
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+              
+            });
             menu.MenuItems.Add(closeItem);
 
             trayIcon.ContextMenu = menu;    //设置NotifyIcon的右键弹出菜单
+        }
+
+        private  void TrayIcon_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string str = "ariauwp://";
+                Uri uri = new Uri(str);
+                var success = Windows.System.Launcher.LaunchUriAsync(uri).GetResults();
+            }
+            catch (Exception)
+            {
+            }
+           
         }
 
         private void RemoveTrayIcon()

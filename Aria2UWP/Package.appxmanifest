@@ -5,13 +5,12 @@
   xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
   xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
-  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
-  IgnorableNamespaces="uap mp desktop rescap">
+  IgnorableNamespaces="uap mp desktop">
 
   <Identity
     Name="15275ichen.Aria2forUWP"
     Publisher="CN=F67D8B2C-93A6-482B-9BE2-00CD61030093"
-    Version="1.0.13.0" />
+    Version="1.0.15.0" />
 
   <mp:PhoneIdentity PhoneProductId="72edd841-9ed9-4630-86f5-a6bab66f6349" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
@@ -39,12 +38,14 @@
         BackgroundColor="transparent"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png">
-        <uap:DefaultTile >
+        <uap:DefaultTile  Square71x71Logo="Assets\SmallTile.png" Wide310x150Logo="Assets\WideTile.png" Square310x310Logo="Assets\LargeTile.png">
           <uap:ShowNameOnTiles>
             <uap:ShowOn Tile="square150x150Logo"/>
           </uap:ShowNameOnTiles>
         </uap:DefaultTile >
+        <uap:SplashScreen Image="Assets\SplashScreen.png"/>
       </uap:VisualElements>
+     
     </Application>
   </Applications>
   <Capabilities>
