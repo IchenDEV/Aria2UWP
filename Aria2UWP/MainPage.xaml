@@ -6,33 +6,104 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:Windows10version1809="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 7)"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d"
     Background="{ThemeResource SystemControlAcrylicWindowMediumHighBrush}" Loaded="Page_Loaded" >
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="VCStyle.xaml" />
 
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
     <Grid>
-        <Grid x:Name="Title" Height="32" VerticalAlignment="Top" Margin="128,0,0,0" Background="Transparent">
-
-        </Grid>
-        <StackPanel Orientation="Horizontal" Height="32" VerticalAlignment="Top">
-
-            <AppBarButton Style="{ThemeResource AppBarButtonRevealStyle}" Icon="Repair" FontSize="16" Height="37" Click="AppBarButton_Click" Margin="0,-5,0,0" />
-        </StackPanel>
-        <Grid x:Name="NativeAdContainer" HorizontalAlignment="Center" VerticalAlignment="Top">
-            <StackPanel  Orientation="Horizontal" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Image x:Name="AdIconImage2" HorizontalAlignment="Center" VerticalAlignment="Center"  />
-                <Image x:Name="AdIconImage"  Source="/Assets/SmallTile.png" HorizontalAlignment="Center" VerticalAlignment="Center"  Height="28"/>
-                <TextBlock x:Name="TitleTextBlock" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0"    Text="Aria2 UWP"  FontSize="20"  />
-                <Button x:Name="CallToActionButton" Padding="0" Background="Gray" Foreground="White" Windows10version1809:CornerRadius="15"
+        <Grid x:Name="Header" Visibility="Collapsed">
+            <Grid x:Name="Title" Height="34" VerticalAlignment="Top" Margin="128,0,0,0" Background="Transparent">
+            </Grid>
+            <StackPanel Orientation="Horizontal" Height="34" VerticalAlignment="Top">
+                <AppBarButton Style="{ThemeResource AppBarButtonRevealStyle}" Icon="Repair" FontSize="16" Height="37" Click="RepairButton_Click" Margin="0,-6,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <!--<AppBarButton Style="{ThemeResource AppBarButtonRevealStyle}" Icon="BlockContact"  FontSize="16" Height="37" Click="BDButton_Click" Margin="0,-6,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" />-->
+                <AppBarButton Style="{ThemeResource AppBarButtonRevealStyle}" Icon="Manage"  FontSize="16" Height="37" Margin="0,-6,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" >
+                    <AppBarButton.Flyout>
+                        <Flyout>
+                            <local:BMBCon/>
+                        </Flyout>
+                    </AppBarButton.Flyout>
+                </AppBarButton>
+            </StackPanel>
+            <Grid x:Name="NativeAdContainer" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,2,0,0">
+                <StackPanel CornerRadius="18"  Background="{ThemeResource SystemControlAcrylicElementMediumHighBrush}"  MaxHeight="32" Orientation="Horizontal" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Grid Margin="0,0,2,0" Padding="0,2,0,2"  >
+                        <Image x:Name="AdIconImage"  Source="/Assets/SmallTile.png" HorizontalAlignment="Left" VerticalAlignment="Stretch" />
+                        <Image x:Name="AdIconImage2" HorizontalAlignment="Left" VerticalAlignment="Top" Height="10" />
+                    </Grid>
+                    <Grid  Padding="5,1,5,1">
+                        <TextBlock x:Name="TitleTextBlock" VerticalAlignment="Center" Padding="0"    Text="Aria2 UWP"  FontSize="15" Margin="0,0,2,0"  />
+                    </Grid>
+                    <Button x:Name="CallToActionButton" FontSize="10" Padding="1" Background="Gray" Foreground="White" Windows10version1809:CornerRadius="15"
             HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" Height="Auto"
             Content="The call to action text will go here" 
             Visibility="Collapsed"/>
-            </StackPanel>
+                </StackPanel>
+            </Grid>
         </Grid>
+
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Image Source="/Assets/SmallTile.png" Height="128" Width="128" Stretch="UniformToFill" />
-            <TextBlock Text="Aria2 UWP" FontSize="64" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text="  Aria2 UWP" FontSize="64" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </StackPanel>
-        <WebView  x:Name="wb" UnsafeContentWarningDisplaying="WebView_UnsafeContentWarningDisplaying" UnsupportedUriSchemeIdentified="WebView_UnsupportedUriSchemeIdentified" Margin="0,32,0,0"  />
-        <ProgressRing IsActive="True" Width="300" Height="300" x:Name="PR"/>
+        <WebView  x:Name="wb"  UnsupportedUriSchemeIdentified="WebView_UnsupportedUriSchemeIdentified" Margin="0,32,0,0"  />
+        <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
+            <TextBlock x:Name="LoadingText" Text="Loading" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30"/>
+            <ProgressBar IsIndeterminate="True"  Height="25" x:Name="PR" Margin="0,5,0,0"/>
+        </StackPanel>
+        <controls:InAppNotification x:Name="VSCodeInAppNotification"
+                                    Style="{StaticResource VSCodeNotificationStyle}"
+                                    AnimationDuration="00:00:00.1000000"
+                                    VerticalOffset="100"
+                                    HorizontalOffset="0"
+                                    StackMode="Replace" Margin="2,16,2,0">
+            <controls:InAppNotification.ContentTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock VerticalAlignment="Center"
+                                   Text="百度云链接"
+                                   TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" />
+                            <TextBox x:Name="BdUriTB"  VerticalAlignment="Center" BorderThickness="0" Background="Transparent"
+                                       VerticalContentAlignment="Center"
+                                   PlaceholderText="https://pab.baidu.com/s/X"
+                                   TextWrapping="NoWrap" >
+                            </TextBox>
+                            <TextBlock VerticalAlignment="Center"
+                                 
+                                   Text="密码"
+                                   TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" />
+                            <TextBox  VerticalAlignment="Center"
+                                        x:Name="BdPassTB"
+                                      BorderThickness="0" Background="Transparent"
+                                       VerticalContentAlignment="Center"
+                                   PlaceholderText="66za"
+                                   TextWrapping="NoWrap" >
+                            </TextBox>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Orientation="Horizontal">
+                            <Button Content="解析" 
+                                    Click="DecodeButton_Click"
+                                    Style="{StaticResource VisualStudioCodeNotificationButtonStyle}" />
+                            <Button Content="取消" 
+                                    Click="DismissButton_Click"
+                                    Style="{StaticResource VisualStudioCodeNotificationButtonStyle}" />
+
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </controls:InAppNotification.ContentTemplate>
+        </controls:InAppNotification>
     </Grid>
 </Page>

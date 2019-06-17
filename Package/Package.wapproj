@@ -55,7 +55,7 @@
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
     <DefaultLanguage>zh-CN</DefaultLanguage>
     <EntryPointProjectUniqueName>..\Aria2UWP\Aria2UWP.csproj</EntryPointProjectUniqueName>
-    <PackageCertificateThumbprint>D957958EEBC1BEE71C8C49D82ED773E30F2A03F4</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>5D8CA7EFE5AFD037623FE34A5A50E3CB1FAD6901</PackageCertificateThumbprint>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxBundlePlatforms>x64</AppxBundlePlatforms>
@@ -102,7 +102,6 @@
     <Content Include="Images\LargeTile.scale-125.png" />
     <Content Include="Images\LargeTile.scale-150.png" />
     <Content Include="Images\LargeTile.scale-200.png" />
-    <Content Include="Images\LargeTile.scale-400.png" />
     <Content Include="Images\SmallTile.scale-100.png" />
     <Content Include="Images\SmallTile.scale-125.png" />
     <Content Include="Images\SmallTile.scale-150.png" />
