@@ -39,7 +39,7 @@
                         <Image x:Name="AdIconImage2" HorizontalAlignment="Left" VerticalAlignment="Top" Height="10" />
                     </Grid>
                     <Grid  Padding="5,1,5,1">
-                        <TextBlock x:Name="TitleTextBlock" VerticalAlignment="Center" Padding="0"    Text="Aria2 UWP"  FontSize="15" Margin="0,0,2,0"  />
+                        <TextBlock x:Name="TitleTextBlock" VerticalAlignment="Center" Padding="0"    Text="AK下载"  FontSize="15" Margin="0,0,2,0"  />
                     </Grid>
                     <Button x:Name="CallToActionButton" FontSize="10" Padding="1" Background="Gray" Foreground="White" Windows10version1809:CornerRadius="15"
             HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" Height="Auto"
@@ -51,7 +51,7 @@
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Image Source="/Assets/SmallTile.png" Height="128" Width="128" Stretch="UniformToFill" />
-            <TextBlock Text="  Aria2 UWP" FontSize="64" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text="AK下载" FontSize="64" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </StackPanel>
         <WebView  x:Name="wb"  UnsupportedUriSchemeIdentified="WebView_UnsupportedUriSchemeIdentified" Margin="0,32,0,0"  />
         <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Bottom">

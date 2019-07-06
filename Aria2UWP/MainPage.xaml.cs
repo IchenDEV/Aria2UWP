@@ -9,6 +9,7 @@ using Windows.UI.Xaml.Media.Imaging;
 using Aria2UWP.Tools;
 using System.Threading.Tasks;
 using System.Threading;
+using Windows.Web.Http;
 
 namespace Aria2UWP
 {
@@ -98,20 +99,20 @@ namespace Aria2UWP
             }
             nativeAd.RegisterAdContainer(NativeAdContainer);
         }
-
         private async System.Threading.Tasks.Task Repair()
         {
             await ApplicationData.Current.LocalFolder.CreateFileAsync("aria2.session", CreationCollisionOption.ReplaceExisting);
             await FullTrustProcessLauncher.LaunchFullTrustProcessForCurrentAppAsync();
-            wb.NavigationCompleted += Wb_NavigationCompleted;
             wb.Navigate(new Uri("ms-appdata:///local/webui/index.html"));
         }
         private async void Wb_NavigationCompleted(WebView sender, WebViewNavigationCompletedEventArgs args)
         {
-            
 
-            string js = "window.location = \"#!/settings/rpc/set?protocol=http&host=127.0.0.1&port=6800&interface=jsonrpc&secret=ar\"";
-            await sender.InvokeScriptAsync("eval", new string[] { js });
+            if (IsAppUpdated || SystemInformation.IsFirstRun)
+            {
+                string js = "window.location = \"#!/settings/rpc/set?protocol=http&host=127.0.0.1&port=6800&interface=jsonrpc&secret=ar\"";
+                await sender.InvokeScriptAsync("eval", new string[] { js });
+            }
             sender.NavigationCompleted -= Wb_NavigationCompleted;
             AllLoaded();
         }
@@ -139,7 +140,7 @@ namespace Aria2UWP
                 {
                     IsPrimaryButtonEnabled = true,
                     Title = "还差一步",
-                    Content = "激活Aria2",
+                    Content = "激活Aria2,本次启动可能无法正常连接,如果连接失败请重新启动程序",
                     PrimaryButtonText = "激活"
                 };
                 contentDialog.PrimaryButtonClick += async (e, a) =>
@@ -172,8 +173,10 @@ namespace Aria2UWP
             {
                 await ApplicationData.Current.LocalFolder.CreateFileAsync("aria2.log");
             }
+          
             wb.NavigationCompleted += Wb_NavigationCompleted;
             LoadingText.Text = "加载 AriaNG";
+          
             wb.Navigate(new Uri("ms-appdata:///local/webui/index.html"));
         }
 
