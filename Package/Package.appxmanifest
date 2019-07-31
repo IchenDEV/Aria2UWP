@@ -11,7 +11,7 @@
   <Identity
     Name="15275ichen.Aria2forUWP"
     Publisher="CN=F67D8B2C-93A6-482B-9BE2-00CD61030093"
-    Version="1.1.28.0" />
+    Version="1.1.30.0" />
 
   <Properties>
     <DisplayName>AK下载</DisplayName>
@@ -43,7 +43,7 @@
       </uap:VisualElements>
       <Extensions>
 
-        <desktop:Extension Category="windows.fullTrustProcess" Executable="Win32/Launcher.exe">
+        <desktop:Extension Category="windows.fullTrustProcess" Executable="Win32/Launch2.exe">
           <desktop:FullTrustProcess>
             <desktop:ParameterGroup GroupId="StopGroup" Parameters="Stop"/>
             <desktop:ParameterGroup GroupId="OtherGroup" Parameters="/Other"/>

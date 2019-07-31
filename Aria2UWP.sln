@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Launcher", "Launcher\Launch
 EndProject
 Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "Package", "Package\Package.wapproj", "{F5D95D76-B0DC-489A-AC94-BE49827329D6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Launch2", "Launch2\Launch2.csproj", "{A4CD6197-1C99-484E-BB11-901B694AE89F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -99,6 +101,26 @@ Global
 		{F5D95D76-B0DC-489A-AC94-BE49827329D6}.Release|x86.ActiveCfg = Release|x86
 		{F5D95D76-B0DC-489A-AC94-BE49827329D6}.Release|x86.Build.0 = Release|x86
 		{F5D95D76-B0DC-489A-AC94-BE49827329D6}.Release|x86.Deploy.0 = Release|x86
+		{A4CD6197-1C99-484E-BB11-901B694AE89F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4CD6197-1C99-484E-BB11-901B694AE89F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4CD6197-1C99-484E-BB11-901B694AE89F}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{A4CD6197-1C99-484E-BB11-901B694AE89F}.Debug|ARM.Build.0 = Debug|Any CPU
+		{A4CD6197-1C99-484E-BB11-901B694AE89F}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{A4CD6197-1C99-484E-BB11-901B694AE89F}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{A4CD6197-1C99-484E-BB11-901B694AE89F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A4CD6197-1C99-484E-BB11-901B694AE89F}.Debug|x64.Build.0 = Debug|Any CPU
+		{A4CD6197-1C99-484E-BB11-901B694AE89F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A4CD6197-1C99-484E-BB11-901B694AE89F}.Debug|x86.Build.0 = Debug|Any CPU
+		{A4CD6197-1C99-484E-BB11-901B694AE89F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4CD6197-1C99-484E-BB11-901B694AE89F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4CD6197-1C99-484E-BB11-901B694AE89F}.Release|ARM.ActiveCfg = Release|Any CPU
+		{A4CD6197-1C99-484E-BB11-901B694AE89F}.Release|ARM.Build.0 = Release|Any CPU
+		{A4CD6197-1C99-484E-BB11-901B694AE89F}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{A4CD6197-1C99-484E-BB11-901B694AE89F}.Release|ARM64.Build.0 = Release|Any CPU
+		{A4CD6197-1C99-484E-BB11-901B694AE89F}.Release|x64.ActiveCfg = Release|Any CPU
+		{A4CD6197-1C99-484E-BB11-901B694AE89F}.Release|x64.Build.0 = Release|Any CPU
+		{A4CD6197-1C99-484E-BB11-901B694AE89F}.Release|x86.ActiveCfg = Release|Any CPU
+		{A4CD6197-1C99-484E-BB11-901B694AE89F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

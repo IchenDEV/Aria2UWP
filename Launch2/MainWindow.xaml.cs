@@ -1,22 +1,30 @@
 ﻿using System;
-using System.Windows;
-using System.Windows.Forms;
-using Windows.Storage;
-using System.Threading;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
-using Windows.System.Threading;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
-namespace Launcher
+namespace Launch2
 {
     /// <summary>
-    /// MainWindow.xaml 的交互逻辑
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
-            KillAria2c();
+              KillAria2c();
             KillOtherLauncher();
             LaunchAria();
         }
@@ -32,12 +40,22 @@ namespace Launcher
                 Info.WorkingDirectory = System.AppDomain.CurrentDomain.BaseDirectory;
                 //最小化方式启动
                 Info.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+                Info.CreateNoWindow = true;
                 string downloadPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\AKDownload";
-                string DocPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)+"\\AKDownload";
+                string DocPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\AKDownload\\Configs";
+
+                if (!File.Exists($"{DocPath}\\aria2.log"))
+                {
+                    File.Create($"{DocPath}\\aria2.log");
+                }
+                if (!File.Exists($"{DocPath}\\aria2.session"))
+                {
+                    File.Create($"{DocPath}\\aria2.session");
+                }
                 Info.Arguments = $"--log= {DocPath}\\aria2.log  " +
                     $"--input-file={DocPath}\\aria2.session " +
                     $"--save-session={DocPath} aria2.session " +
-                    $"--dir={downloadPath}" +
+                    $"--dir={downloadPath} " +
                     $"--conf-path=aria2.conf -D ";
                 var Proc = System.Diagnostics.Process.Start(Info);
             }
@@ -81,6 +99,5 @@ namespace Launcher
                 }
             }
         }
-
     }
 }

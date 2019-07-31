@@ -10,7 +10,7 @@
   <Identity
     Name="15275ichen.Aria2forUWP"
     Publisher="CN=F67D8B2C-93A6-482B-9BE2-00CD61030093"
-    Version="1.0.27.0" />
+    Version="1.0.28.0" />
 
   <mp:PhoneIdentity PhoneProductId="72edd841-9ed9-4630-86f5-a6bab66f6349" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
